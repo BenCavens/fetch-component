@@ -12,12 +12,12 @@ class ModuleComponent extends HTMLElement {
 
     connectedCallback(){
         this.shadow.innerHTML = '<style> *{ color: tomato; } </style><slot name="header"></slot><strong>DIT IS DEN EERSTE INHOUD</strong><br><slot></slot>';
-
-        this.addEventListener('keyup', this._onKeyUp);
+        this.addEventListener('submit', this._onKeyUp);
     }
 
-    _onKeyUp(){
-        this.classList.add('hidden');
+    _onKeyUp(e){
+        e.preventDefault();
+        console.log('submission');
     }
 
     set src(value){
