@@ -10,8 +10,13 @@
     <style>
         *{
             font-size: 20px;
-            color: green;
-            background-color: grey;
+            color: black;
+            background-color: white;
+        }
+
+        section{
+            background-color: aliceblue;
+            padding:10px;
         }
 
         .hidden{ display: none; }
@@ -26,10 +31,32 @@
             fetch component
         </h1>
 
+        <button id="one" data-target="/modules/module-one.html">MODULE ONE</button>
+        <button id="two" data-target="/modules/module-two.html">MODULE TWO</button>
+
+        <hr>
+        <section id="sidebar">
+
+        </section>
+
         <module-component id="module-component" style="display:block; width:100%; height:500px;">
-            <h2 style="font-size:50px;" slot="header">Dit is den header</h2>
+            <span slot="header">Dit is den header</span>
             Awesome content!
         </module-component>
+
+        <script>
+            document.querySelectorAll('[data-target]').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    editModule(e.target.getAttribute('data-target'));
+                })
+            });
+
+            function editModule(src) {
+                const module = document.createElement('module-component');
+                module.src = src;
+                document.getElementById('sidebar').append(module);
+            }
+        </script>
 
     </div>
 </div>
